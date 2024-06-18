@@ -1,0 +1,18 @@
+[tox]
+envlist = py39
+skipsdist = True
+
+[testenv]
+deps =
+    Behave
+commands =
+    coverage run -m Behave
+    coverage xml
+
+[coverage:run]
+relative_files = True
+branch = True
+omit =
+    steps/commande_steps.py
+    api/producer.py
+    api/consumer.py

@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="120e888f-a46f-4bab-81db-740f1b2b4b29" name="Changes" comment="coverage fix" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/Redis" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Thyb12&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Thyb12/commande_service.git&quot;,
+    &quot;accountId&quot;: &quot;fdc6d750-277d-431e-b556-9e4fa841f8d2&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2hjNOoX9ik5qcMVfkNAWWkH9jMe" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Behave.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for produit_steps.test_create_commande.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in commande_steps.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ENV=test behave features.executor&quot;: &quot;Run&quot;,
+    &quot;Python.behave.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pip install --upgrade fastapi pydantic behave.executor&quot;: &quot;Run&quot;,
+    &quot;Python.producer.executor&quot;: &quot;Run&quot;,
+    &quot;Python.commande_api.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/Rabbitmq&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/tjobard/PycharmProjects/commande_service/api2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api2" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.ENV=test behave features">
+    <configuration name="Unnamed" type="PyBehaveRunConfigurationType" factoryName="Behave" nameIsGenerated="true">
+      <module name="commande_service" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ENV=test behave features" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="commande_service" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.9" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="ENV=test behave features" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="producer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="commande_service" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/producer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for commande_steps.test_create_commande" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="commande_service" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/steps" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;commande_steps.test_create_commande&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests in commande_steps.py" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="commande_service" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/steps" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/steps/commande_steps.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Behave.Unnamed" />
+      <item itemvalue="Python.ENV=test behave features" />
+      <item itemvalue="Python.producer" />
+      <item itemvalue="Python tests.Python tests for commande_steps.test_create_commande" />
+      <item itemvalue="Python tests.Python tests in commande_steps.py" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.producer" />
+        <item itemvalue="Python tests.Python tests in commande_steps.py" />
+        <item itemvalue="Python tests.Python tests for commande_steps.test_create_commande" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.17890.14" />
+        <option value="bundled-python-sdk-5b207ade9991-7e9c3bbb6e34-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.17890.14" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="120e888f-a46f-4bab-81db-740f1b2b4b29" name="Changes" comment="" />
+      <created>1718103496839</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1718103496839</updated>
+      <workItem from="1718103498568" duration="7196000" />
+      <workItem from="1718224061239" duration="59000" />
+      <workItem from="1718276681905" duration="11999000" />
+      <workItem from="1718365772566" duration="24742000" />
+    </task>
+    <task id="LOCAL-00002" summary="Init commande_service">
+      <option name="closed" value="true" />
+      <created>1718104564914</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1718104564914</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Init commande_service">
+      <option name="closed" value="true" />
+      <created>1718104606565</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718104606565</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix api et init Docker">
+      <option name="closed" value="true" />
+      <created>1718106314141</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718106314141</updated>
+    </task>
+    <task id="LOCAL-00005" summary="init Github Action et SonarQube">
+      <option name="closed" value="true" />
+      <created>1718107195625</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718107195625</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix sonar scans">
+      <option name="closed" value="true" />
+      <created>1718107475236</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718107475236</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix sonar scans">
+      <option name="closed" value="true" />
+      <created>1718107587807</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718107587807</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix sonar scans">
+      <option name="closed" value="true" />
+      <created>1718107790288</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718107790288</updated>
+    </task>
+    <task id="LOCAL-00009" summary="ajout des test dans la pipeline">
+      <option name="closed" value="true" />
+      <created>1718113243963</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718113243963</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix Dockerfile pour exec les tests">
+      <option name="closed" value="true" />
+      <created>1718113551111</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718113551111</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix cicd pour exec les tests">
+      <option name="closed" value="true" />
+      <created>1718113940921</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1718113940922</updated>
+    </task>
+    <task id="LOCAL-00012" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718114890464</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1718114890464</updated>
+    </task>
+    <task id="LOCAL-00013" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718115106678</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1718115106678</updated>
+    </task>
+    <task id="LOCAL-00014" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718115377202</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718115377202</updated>
+    </task>
+    <task id="LOCAL-00015" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718116257684</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1718116257684</updated>
+    </task>
+    <task id="LOCAL-00016" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718116429261</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1718116429261</updated>
+    </task>
+    <task id="LOCAL-00017" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718116503822</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1718116503822</updated>
+    </task>
+    <task id="LOCAL-00018" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718117394849</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1718117394849</updated>
+    </task>
+    <task id="LOCAL-00019" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718135642725</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1718135642725</updated>
+    </task>
+    <task id="LOCAL-00020" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718135946419</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1718135946419</updated>
+    </task>
+    <task id="LOCAL-00021" summary="coverage des tests">
+      <option name="closed" value="true" />
+      <created>1718136963853</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1718136963853</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix docker et l'execution de l'api et tests">
+      <option name="closed" value="true" />
+      <created>1718139530759</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1718139530759</updated>
+    </task>
+    <task id="LOCAL-00023" summary="push coverage">
+      <option name="closed" value="true" />
+      <created>1718140180129</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1718140180129</updated>
+    </task>
+    <task id="LOCAL-00024" summary="test avec le coverage immense.">
+      <option name="closed" value="true" />
+      <created>1718140388209</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1718140388209</updated>
+    </task>
+    <task id="LOCAL-00025" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718141196293</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1718141196293</updated>
+    </task>
+    <task id="LOCAL-00026" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718141226909</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1718141226909</updated>
+    </task>
+    <task id="LOCAL-00027" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718143143992</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1718143143992</updated>
+    </task>
+    <task id="LOCAL-00028" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718143322963</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1718143322963</updated>
+    </task>
+    <task id="LOCAL-00029" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718143466463</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1718143466463</updated>
+    </task>
+    <task id="LOCAL-00030" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718143697278</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1718143697278</updated>
+    </task>
+    <task id="LOCAL-00031" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718143893696</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1718143893696</updated>
+    </task>
+    <task id="LOCAL-00032" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718145019000</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1718145019000</updated>
+    </task>
+    <task id="LOCAL-00033" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718145168351</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1718145168351</updated>
+    </task>
+    <task id="LOCAL-00034" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718145374776</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1718145374776</updated>
+    </task>
+    <task id="LOCAL-00035" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718145497418</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1718145497418</updated>
+    </task>
+    <task id="LOCAL-00036" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718145614434</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1718145614434</updated>
+    </task>
+    <task id="LOCAL-00037" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718145934553</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1718145934553</updated>
+    </task>
+    <task id="LOCAL-00038" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718146861202</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1718146861202</updated>
+    </task>
+    <task id="LOCAL-00039" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718147121871</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1718147121871</updated>
+    </task>
+    <task id="LOCAL-00040" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718147259465</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1718147259465</updated>
+    </task>
+    <task id="LOCAL-00041" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718148127462</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1718148127462</updated>
+    </task>
+    <task id="LOCAL-00042" summary="coverage">
+      <option name="closed" value="true" />
+      <created>1718148285473</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1718148285473</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Rabbit done">
+      <option name="closed" value="true" />
+      <created>1718573867579</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1718573867579</updated>
+    </task>
+    <task id="LOCAL-00044" summary="ajout feature dans ci-cd">
+      <option name="closed" value="true" />
+      <created>1718576582587</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1718576582587</updated>
+    </task>
+    <task id="LOCAL-00045" summary="ajout nouveau test">
+      <option name="closed" value="true" />
+      <created>1718578336490</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1718578336490</updated>
+    </task>
+    <task id="LOCAL-00046" summary="ajout nouveau test">
+      <option name="closed" value="true" />
+      <created>1718578598789</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1718578598789</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fix">
+      <option name="closed" value="true" />
+      <created>1718578673334</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1718578673334</updated>
+    </task>
+    <task id="LOCAL-00048" summary="fix">
+      <option name="closed" value="true" />
+      <created>1718579290383</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1718579290383</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fix">
+      <option name="closed" value="true" />
+      <created>1718579509622</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1718579509622</updated>
+    </task>
+    <task id="LOCAL-00050" summary="coverage fix">
+      <option name="closed" value="true" />
+      <created>1718580422973</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1718580422975</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.api" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/Rabbitmq" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init commande_service" />
+    <MESSAGE value="fix api et init Docker" />
+    <MESSAGE value="init Github Action et SonarQube" />
+    <MESSAGE value="fix sonar scans" />
+    <MESSAGE value="ajout des test dans la pipeline" />
+    <MESSAGE value="fix Dockerfile pour exec les tests" />
+    <MESSAGE value="fix cicd pour exec les tests" />
+    <MESSAGE value="coverage des tests" />
+    <MESSAGE value="fix docker et l'execution de l'api et tests" />
+    <MESSAGE value="push coverage" />
+    <MESSAGE value="test avec le coverage immense." />
+    <MESSAGE value="coverage" />
+    <MESSAGE value="Redis init" />
+    <MESSAGE value="Rabbit done" />
+    <MESSAGE value="ajout feature dans ci-cd" />
+    <MESSAGE value="ajout nouveau test" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="coverage fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="coverage fix" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/commande_service$producer.coverage" NAME="producer Coverage Results" MODIFIED="1718572817015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api" />
+    <SUITE FILE_PATH="coverage/commande_service$behave.coverage" NAME="behave Coverage Results" MODIFIED="1718129482042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/steps" />
+    <SUITE FILE_PATH="coverage/commande_service$.coverage" NAME=" Coverage Results" MODIFIED="1718131760765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/steps" />
+    <SUITE FILE_PATH="coverage/commande_service$pip_install___upgrade_fastapi_pydantic_behave.coverage" NAME="ENV=test behave features Coverage Results" MODIFIED="1718575195686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/commande_service$commande_api.coverage" NAME="commande_api Coverage Results" MODIFIED="1718129571089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api" />
+    <SUITE FILE_PATH="coverage/commande_service$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1718129752504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+</project>
