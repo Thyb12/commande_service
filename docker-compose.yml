@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - "8886:8886"
+    environment:
+      - RABBITMQ_HOST=host.docker.internal  # Utiliser l'hôte Docker pour accéder à l'instance RabbitMQ existante
+      - RABBITMQ_QUEUE=my_queue
+    depends_on:
+      - consumer
+
+  consumer:
+    build:
+      context: .
+      dockerfile: Dockerfile.consumer
+    environment:
+      - RABBITMQ_HOST=host.docker.internal  # Utiliser l'hôte Docker pour accéder à l'instance RabbitMQ existante
+      - RABBITMQ_QUEUE=commande_queue
+
+  producer:
+    build:
+      context: .
+      dockerfile: Dockerfile.producer
+    environment:
+      - RABBITMQ_HOST=host.docker.internal  # Utiliser l'hôte Docker pour accéder à l'instance RabbitMQ existante
+      - RABBITMQ_QUEUE=commande_queue
