@@ -24,35 +24,35 @@ def db():
     db.close()
 
 @given('je crée un commande avec le nom "{name}" et la quantité {quantity:d}')
-async def create_product(context, name, quantity):
+async def create_commande(context, name, quantity):
     commande_data = {"name": name, "quantity": quantity}
     context.commande_created = await create_commande(commande_data, db())
 
 
 @then('je récupère tous les commandes')
-async def get_all_products(context):
+async def get_all_commandes(context):
     context.commandes = await read_commandes(db())
 
-@when('je supprime le commande avec l\'ID {product_id:d}')
-async def delete_product(context, product_id):
-    await delete_commande(product_id, db())
+@when('je supprime le commande avec l\'ID {commande_id:d}')
+async def delete_commande(context, commande_id):
+    await delete_commande(commande_id, db())
 
 
 @then('le commande est créé')
-def check_product_created(context):
+def check_commande_created(context):
     assert read_commandes().__sizeof__() > 0
 
 @then('je reçois une liste de commandes')
-async def check_products_received(context):
+async def check_commandes_received(context):
     reponse = await read_commandes(db())
     assert reponse == context.commandes
 
 @then('le commande est supprimé avec succès')
-async def check_product_deleted(context):
+async def check_commande_deleted(context):
     assert await delete_commande(context.commandes[0], db()) is not None
-@then('je reçois le commande spécifique avec l\'ID {product_id:d}')
-async def check_specific_product_received(context, product_id):
-    assert read_specific_commande(product_id) == context.commandes[0]
+@then('je reçois le commande spécifique avec l\'ID {commande_id:d}')
+async def check_specific_commande_received(context, commande_id):
+    assert read_specific_commande(commande_id) == context.commandes[0]
 
 @then('un message RabbitMQ est envoyé avec les détails du commande "{name} {quantity}')
 @patch('api.commande_api.connect_rabbitmq')

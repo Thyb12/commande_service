@@ -43,11 +43,11 @@ def get_db(env: str = "prod"):
         db.close()
 
 # Définition de la table d'association
-commande_product_link = Table(
-    'commande_product_link',
+commande_commande_link = Table(
+    'commande_commande_link',
     Base.metadata,
     Column('commande_id', Integer, ForeignKey('commande.id'), primary_key=True),
-    Column('product_id', Integer, ForeignKey('product.id'), primary_key=True)
+    Column('commande_id', Integer, ForeignKey('commande.id'), primary_key=True)
 )
 
 
@@ -58,7 +58,7 @@ class Commande(Base):
     createdAt = Column(DateTime, index=True)
     customer_id = Column(Integer, ForeignKey('client.id'))
     customer = relationship("client", back_populates="commandes")
-    products = relationship("produits", secondary=commande_product_link, back_populates="commandes")
+    commandes = relationship("produits", secondary=commande_commande_link, back_populates="commandes")
 
 # Création d'un modèle pydantic pour la création de commande
 class CommandeCreate(BaseModel):
@@ -66,7 +66,7 @@ class CommandeCreate(BaseModel):
     quantity: int
     createdAt: datetime
     customerId: int
-    products: List[int]
+    commandes: List[int]
 
 # Création d'un modèle pydantic pour la réponse de commande
 class CommandeResponse(CommandeCreate):
@@ -111,7 +111,7 @@ async def create_commande(commande: CommandeCreate, db: Session = Depends(get_db
         quantity=commande.quantity,
         createdAt=commande.createdAt,
         customer_id=commande.customerId,
-        products=commande.products  # Store as list of product IDs
+        commandes=commande.commandes  # Store as list of commande IDs
     )
     db.add(db_commande)
     db.commit()
