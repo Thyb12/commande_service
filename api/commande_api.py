@@ -1,83 +1,70 @@
 import os
+import httpx
 from fastapi import FastAPI, HTTPException, Depends, Request, Response
 from pydantic import BaseModel
-from typing import List
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, Table, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, Session, relationship
+from typing import List, Optional
+from pymongo import MongoClient
+from bson import ObjectId
 from prometheus_client import Summary, Counter, generate_latest, CONTENT_TYPE_LATEST
-import pika
 import logging
-from datetime import datetime
+import pika
+from datetime import datetime, timedelta
 
 logger = logging.getLogger("uvicorn.error")
 
 # Création de l'instance FastAPI pour initialiser l'application et permettre la définition des routes.
 app = FastAPI()
 
-# Configuration et mise en place de la connexion à la base de données avec SQLAlchemy
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./commande_api.db")
-DATABASE_URL_TEST = "sqlite:///./test_db.sqlite"
-RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "localhost")
-RABBITMQ_QUEUE = os.getenv("RABBITMQ_QUEUE", "commande_queue")
-
-# Définition d'un modèle de données pour une commande dans la base de données
-Base = declarative_base()
-
-def get_engine(env: str = "prod"):
-    if env == "test":
-        return create_engine(DATABASE_URL_TEST)
-    else:
-        return create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
-
-# Définition d'une fonction pour obtenir une session de base de données en fonction de l'environnement
-def get_db(env: str = "prod"):
-    engine = get_engine(env)
-    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    db = SessionLocal()
-    if env == "prod":
-        Base.metadata.create_all(bind=engine)
-    try:
-        yield db
-    finally:
-        db.close()
-
-# Définition de la table d'association
-commande_commande_link = Table(
-    'commande_commande_link',
-    Base.metadata,
-    Column('commande_id', Integer, ForeignKey('commande.id'), primary_key=True),
-    Column('commande_id', Integer, ForeignKey('commande.id'), primary_key=True)
-)
-
-
-
-class Commande(Base):
-    __tablename__ = "commande"
-    id = Column(Integer, primary_key=True, index=True)
-    createdAt = Column(DateTime, index=True)
-    customer_id = Column(Integer, ForeignKey('client.id'))
-    customer = relationship("client", back_populates="commandes")
-    commandes = relationship("produits", secondary=commande_commande_link, back_populates="commandes")
+# Configuration et mise en place de la connexion à la base de données avec MongoDB
+MONGODB_URL = "mongodb://localhost:27017"
+DATABASE_NAME = "MSPR_1"
+COLLECTION_NAME = "commandes"
+RABBITMQ_HOST = "localhost"
+RABBITMQ_QUEUE = "commande_queue"
+client = MongoClient(MONGODB_URL)
+db = client[DATABASE_NAME]
+collection = db[COLLECTION_NAME]
 
 # Création d'un modèle pydantic pour la création de commande
 class CommandeCreate(BaseModel):
     name: str
     quantity: int
     createdAt: datetime
-    customerId: int
-    commandes: List[int]
-
+    customer: str 
+    produits: List[str]
 # Création d'un modèle pydantic pour la réponse de commande
 class CommandeResponse(CommandeCreate):
-    id: int
+    id: str
 
     class Config:
         orm_mode = True
+        arbitrary_types_allowed = True
 
 # Définir des métriques Prometheus
 REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
 REQUEST_COUNT = Counter('request_count', 'Total count of requests')
+
+
+# Fonction pour récupérer les produits à partir de l'API produit
+async def fetch_products(product_ids: List[str]) -> List[dict]:
+    produits = []
+    async with httpx.AsyncClient() as client:
+        for product_id in product_ids:
+            response = await client.get(f"http://localhost:8888/produit/{product_id}")
+            if response.status_code == 200:
+                produits.append(response.json())
+            else:
+                raise HTTPException(status_code=404, detail=f"Produit {product_id} not found")
+    return produits
+
+# Fonction pour récupérer les clients à partir de l'API client
+async def fetch_clients(client_id: str) -> dict:
+    async with httpx.AsyncClient() as client:
+        response = await client.get(f"http://localhost:8887/client/{client_id}")
+        if response.status_code == 200:
+            return response.json()
+        else:
+            raise HTTPException(status_code=404, detail=f"Client {client_id} not found")
 
 # Middleware pour mesurer le temps de traitement des requêtes
 @app.middleware("http")
@@ -103,19 +90,49 @@ def connect_rabbitmq():
         logger.error(f"Failed to connect to RabbitMQ: {e}")
         raise HTTPException(status_code=500, detail="Could not connect to RabbitMQ")
 
-# Route POST pour créer une nouvelle commande dans l'API
+failed_attempts = {}
+
+# Fonction pour vérifier et limiter les tentatives de connexion
+def rate_limiting(ip_address: str):
+    now = datetime.now()
+    if ip_address in failed_attempts:
+        attempt_info = failed_attempts[ip_address]
+        last_attempt_time = attempt_info["timestamp"]
+        attempts = attempt_info["count"]
+        logger.info(f"IP {ip_address}: {attempts} attempts, last attempt at {last_attempt_time}")
+        # Si moins de 60 secondes depuis la dernière tentative, augmenter le compteur de tentatives
+        if now - last_attempt_time < timedelta(seconds=60):
+            attempts += 1
+            failed_attempts[ip_address] = {"count": attempts, "timestamp": now}
+            # Si plus de 5 tentatives dans les 60 secondes, déclencher la limitation
+            if attempts > 5:
+                raise HTTPException(status_code=429, detail="Too many requests. Try again later.")
+        else:
+            # Réinitialiser après 60 secondes
+            failed_attempts[ip_address] = {"count": 1, "timestamp": now}
+    else:
+        failed_attempts[ip_address] = {"count": 1, "timestamp": now}
+    logger.info(f"IP {ip_address}: allowed")
+
 @app.post("/commandes/create", response_model=CommandeResponse)
-async def create_commande(commande: CommandeCreate, db: Session = Depends(get_db)):
-    db_commande = Commande(
-        name=commande.name, 
-        quantity=commande.quantity,
-        createdAt=commande.createdAt,
-        customer_id=commande.customerId,
-        commandes=commande.commandes  # Store as list of commande IDs
-    )
-    db.add(db_commande)
-    db.commit()
-    db.refresh(db_commande)
+async def create_commande(commande: CommandeCreate, request: Request):
+    client_ip = request.client.host
+    rate_limiting(client_ip)  # Limiter les tentatives de connexion par adresse IP
+
+    # Récupérer les produits avant de créer la commande
+    produits = await fetch_products(commande.produits)
+    # Récupérer les informations du client
+    client_info = await fetch_clients(commande.customer)
+    if not client_info:
+        raise HTTPException(status_code=404, detail="Client not found")
+    
+    commande_data = commande.dict()
+    commande_data["produits"] = produits
+    commande_data["customer"] = client_info
+    commande_data["createdAt"] = datetime.utcnow()
+    result = collection.insert_one(commande_data)
+    commande_data["id"] = str(result.inserted_id)
+
     if os.getenv("ENV") == "prod":
         try:
             # Envoyer un message à RabbitMQ
@@ -127,45 +144,55 @@ async def create_commande(commande: CommandeCreate, db: Session = Depends(get_db
             logger.error(f"Erreur lors de l'envoi du message RabbitMQ : {e}")
             raise HTTPException(status_code=500, detail="Erreur interne du serveur")
 
-    return db_commande
-
+    return commande_data
 # Route GET pour voir toutes les commandes
 @app.get("/commandes/all", response_model=List[CommandeResponse])
-async def read_commandes(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
-    commandes = db.query(Commande).offset(skip).limit(limit).all()
+async def read_commandes(skip: int = 0, limit: int = 10):
+    commandes = list(collection.find().skip(skip).limit(limit))
+    for commande in commandes:
+        commande["id"] = str(commande["_id"])
+        del commande["_id"]
     return commandes
 
 # Route DELETE pour supprimer une commande par son id
 @app.delete("/commandes/{commande_id}")
-async def delete_commande(commande_id: int, db: Session = Depends(get_db)):
-    db_commande = db.query(Commande).filter(Commande.id == commande_id).first()
-    if db_commande is None:
+async def delete_commande(request: Request, commande_id: str):
+    client_ip = request.client.host
+    rate_limiting(client_ip)  # Limiter les tentatives de connexion par adresse IP
+
+    result = collection.delete_one({"_id": ObjectId(commande_id)})
+    if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Commande not found")
-    db.delete(db_commande)
-    db.commit()
     return {"detail": "Commande deleted"}
 
 # Route GET pour voir une commande spécifique par son id
 @app.get("/commande/{commande_id}", response_model=CommandeResponse)
-async def read_specific_commande(commande_id: int, db: Session = Depends(get_db)):
-    db_commande = db.query(Commande).filter(Commande.id == commande_id).first()
-    if db_commande is None:
+async def read_specific_commande(commande_id: str):
+    commande = collection.find_one({"_id": ObjectId(commande_id)})
+    if commande is None:
         raise HTTPException(status_code=404, detail="Commande not found")
-    return db_commande
+    commande["id"] = str(commande["_id"])
+    del commande["_id"]
+    return commande
 
 # Route PUT pour mettre à jour une commande par son id
 @app.put("/commandes/{commande_id}", response_model=CommandeResponse)
-async def update_commande(commande_id: int, commande: CommandeCreate, db: Session = Depends(get_db)):
-    db_commande = db.query(Commande).filter(Commande.id == commande_id).first()
-    if db_commande is None:
+async def update_commande(commande_id: str, commande: CommandeCreate, request: Request):
+    client_ip = request.client.host
+    rate_limiting(client_ip)  # Limiter les tentatives de connexion par adresse IP
+
+    # Récupérer les informations du client
+    client_info = await fetch_clients(commande.customer)
+    if not client_info:
+        raise HTTPException(status_code=404, detail="Client not found")
+
+    update_data = commande.dict()
+    update_data["customer"] = client_info
+    result = collection.update_one({"_id": ObjectId(commande_id)}, {"$set": update_data})
+    if result.matched_count == 0:
         raise HTTPException(status_code=404, detail="Commande not found")
-    
-    db_commande.name = commande.name
-    db_commande.quantity = commande.quantity
-    db_commande.createdAt = commande.createdAt
-    db_commande.customer_id = commande.customerId
-    db_commande.commandes = commande.commandes
-    
-    db.commit()
-    db.refresh(db_commande)
-    return db_commande
+
+    commande = collection.find_one({"_id": ObjectId(commande_id)})
+    commande["id"] = str(commande["_id"])
+    del commande["_id"]
+    return commande
