@@ -152,3 +152,20 @@ async def read_specific_commande(commande_id: int, db: Session = Depends(get_db)
     if db_commande is None:
         raise HTTPException(status_code=404, detail="Commande not found")
     return db_commande
+
+# Route PUT pour mettre à jour une commande par son id
+@app.put("/commandes/{commande_id}", response_model=CommandeResponse)
+async def update_commande(commande_id: int, commande: CommandeCreate, db: Session = Depends(get_db)):
+    db_commande = db.query(Commande).filter(Commande.id == commande_id).first()
+    if db_commande is None:
+        raise HTTPException(status_code=404, detail="Commande not found")
+    
+    db_commande.name = commande.name
+    db_commande.quantity = commande.quantity
+    db_commande.createdAt = commande.createdAt
+    db_commande.customer_id = commande.customerId
+    db_commande.commandes = commande.commandes
+    
+    db.commit()
+    db.refresh(db_commande)
+    return db_commande
